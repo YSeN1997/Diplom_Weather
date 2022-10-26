@@ -1,0 +1,85 @@
+﻿@using System.Globalization
+@model Weather.Web.Models.ForecastModels.ViewModel
+
+@{
+    ViewData["Title"] = $"Погода в {Model.CurrentWeather.Name}";
+    
+    var weatherTypeImg = @"http://openweathermap.org/img/wn/" + @Model.CurrentWeather.Weather.First().Icon + "@2x.png";
+
+}
+
+<div class="container py-5 h-100">
+
+    <div class="row d-flex justify-content-center align-items-center h-100" style="color: #282828;">
+        <div class="col-md-9 col-lg-7 col-xl-5" style="padding-right: 0px; padding-left: 0px; width: 81%;">
+            
+            <div class="card mb-4 gradient-custom" style="border-radius: 25px;">
+                <div class="card-body p-4">
+                    <p class="text-muted mb-0" style="font-size :3rem">@(Model.CurrentWeather.Name)</p>
+                    <div id="weather1" class="carousel slide" data-ride="carousel">
+                      
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="d-flex justify-content-between mb-4 pb-2" style="width: 400px; height: 150px;">
+                                    <div style="height: 150px; width: 204px" >
+                                      
+                                        <div style="font-size: 3.3rem;"><strong>@(Model.CurrentWeather.Main.Temp)°C</strong></div>
+                                        <p> тут @(Model.CurrentWeather.Pop)</p>
+                                        <p style ="padding-top: 25px;">Ощущается как @(Model.CurrentWeather.Main.FleelsLike)</p>
+                                        <p>Ветер: @(Model.CurrentWeather.Wind.Speed)КМ/Ч</p>
+                                        <p>Влажность @(Model.CurrentWeather.Main.Humidity)% </p>
+                                        
+                                        
+                                    </div>
+                                    <div>
+                                        <img src="@(weatherTypeImg)" width="150px" />
+                                        <p>@(Model.CurrentWeather.Weather.First().Description) </p>
+                                        
+                                    </div>
+
+                                   
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                
+               
+            </div>
+
+            <div class="card mb-4" style="border-radius: 25px;">
+                <div class="card-body p-6">
+
+                    @foreach (var day in Model.Forecasts.ToLookup(x => x.Date.Day))
+                    {
+                        <h4>@(day.First().Date.ToString("dddd, dd MMMM"))</h4>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="d-flex text-center mb-4 pb-3 pt-2">
+                                    @foreach (var hour in day)
+                                    {
+                                        <div class="flex-column" style="border-style: double; border-radius: 10px;">
+                                            @*<p class="small"><strong>@(hour.Main.Temp)°C</strong></p>*@
+                                            <p class="small"><strong>@Math.Round(hour.Main.Temp, 1)°C</strong></p>
+                                            
+
+                                            <img src="@("http://openweathermap.org/img/wn/" + hour.Weather.First().Icon + "@2x.png")" width="60px" />
+                                            <p class="mb-0"><strong>@(hour.Date.ToString("HH:mm"))</strong></p>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div> 
+
+        </div>
+
+    </div>
+</div>
+
+    </div>
