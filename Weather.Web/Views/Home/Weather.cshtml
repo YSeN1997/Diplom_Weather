@@ -3,29 +3,29 @@
 
 @{
     ViewData["Title"] = $"Погода в {Model.CurrentWeather.Name}";
-    
-    var weatherTypeImg = @"http://openweathermap.org/img/wn/" + @Model.CurrentWeather.Weather.First().Icon + "@2x.png";
 
+    var weatherTypeImg = @"http://openweathermap.org/img/wn/" + @Model.CurrentWeather.Weather.First().Icon + "@2x.png";
+   // var weatherTypeImg = @"/Icon/" + @Model.CurrentWeather.Weather.First().Icon + ".ico";
+        
 }
 
-<div class="container py-5 h-100">
+<div class="container py-5 h-100" style="background: linear-gradient(145deg, #05021891, #665ee136);; border-radius: 25px;">
 
-    <div class="row d-flex justify-content-center align-items-center h-100" style="color: #282828;">
-        <div class="col-md-9 col-lg-7 col-xl-5" style="padding-right: 0px; padding-left: 0px; width: 81%;">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-7 col-xl-5" style="padding-right: 0px; padding-left: 0px; width: 44%;">
             
-            <div class="card mb-4 gradient-custom" style="border-radius: 25px;">
+            <div class="card mb-4 gradient-custom" style="border-radius: 25px; background: linear-gradient(333deg, #ffffff3d, #dcdbe5);">
                 <div class="card-body p-4">
                     <p class="text-muted mb-0" style="font-size :3rem">@(Model.CurrentWeather.Name)</p>
                     <div id="weather1" class="carousel slide" data-ride="carousel">
                       
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <div class="d-flex justify-content-between mb-4 pb-2" style="width: 400px; height: 150px;">
-                                    <div style="height: 150px; width: 204px" >
+                                <div class="d-flex justify-content-between mb-4 pb-2" style="width: 450px; height: 150px;">
+                                    <div style="height: 150px; width: 204px ;line-height: 1.1">
                                       
                                         <div style="font-size: 3.3rem;"><strong>@(Model.CurrentWeather.Main.Temp)°C</strong></div>
-                                        <p> тут @(Model.CurrentWeather.Pop)</p>
-                                        <p style ="padding-top: 25px;">Ощущается как @(Model.CurrentWeather.Main.FleelsLike)</p>
+                                        <p style="padding-top: 25px;">Ощущается как @(Model.CurrentWeather.Main.FleelsLike)°C</p>
                                         <p>Ветер: @(Model.CurrentWeather.Wind.Speed)КМ/Ч</p>
                                         <p>Влажность @(Model.CurrentWeather.Main.Humidity)% </p>
                                         
@@ -33,7 +33,7 @@
                                     </div>
                                     <div>
                                         <img src="@(weatherTypeImg)" width="150px" />
-                                        <p>@(Model.CurrentWeather.Weather.First().Description) </p>
+                                        <p style="font-weight: 600; font-size: 1.1rem">@(Model.CurrentWeather.Weather.First().Description) </p>
                                         
                                     </div>
 
@@ -41,7 +41,7 @@
                                 </div>
                                 
                             </div>
-                            
+                           
                         </div>
                     </div>
                     
@@ -50,23 +50,21 @@
                
             </div>
 
-            <div class="card mb-4" style="border-radius: 25px;">
+            <div class="card mb-4" style="border-radius: 25px; background: linear-gradient(145deg, #ffffff3d, #acabaf);">
                 <div class="card-body p-6">
 
                     @foreach (var day in Model.Forecasts.ToLookup(x => x.Date.Day))
                     {
                         <h4>@(day.First().Date.ToString("dddd, dd MMMM"))</h4>
-                        <div class="carousel-inner">
+                        <div class="carousel-inner" style="border: 3px solid; border-style: solid; border-radius: 15px; padding-left: 10px">
                             <div class="carousel-item active">
                                 <div class="d-flex text-center mb-4 pb-3 pt-2">
                                     @foreach (var hour in day)
                                     {
-                                        <div class="flex-column" style="border-style: double; border-radius: 10px;">
-                                            @*<p class="small"><strong>@(hour.Main.Temp)°C</strong></p>*@
+                                        <div class="flex-column" style="width: 70px;">
                                             <p class="small"><strong>@Math.Round(hour.Main.Temp, 1)°C</strong></p>
-                                            
-
-                                            <img src="@("http://openweathermap.org/img/wn/" + hour.Weather.First().Icon + "@2x.png")" width="60px" />
+                                          <img src="@("/Icon/" + hour.Weather.First().Icon + ".ico")" width="55px" />  
+                                         @*   <img src="@("http://openweathermap.org/img/wn/" + hour.Weather.First().Icon + "@2x.png")" width="55px" />*@
                                             <p class="mb-0"><strong>@(hour.Date.ToString("HH:mm"))</strong></p>
                                         </div>
                                     }

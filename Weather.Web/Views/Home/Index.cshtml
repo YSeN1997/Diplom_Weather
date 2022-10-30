@@ -3,7 +3,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Добро пожаловать!!!</h1>
+    <h1 class="display-4">Сервис погоды!</h1>
     <h2>@ViewData["Error"]</h2>
-    <p>как работает наш сервис.</p>
+    
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <input id="search" placeholder="Введите название Города" name="search" type="text" style="padding: 5px 20px; margin-left: 20px; width: 244px;" />
+        <button id="search-button" type="submit" class="btn btn-light">Поиск</button>
+    }
 </div>
