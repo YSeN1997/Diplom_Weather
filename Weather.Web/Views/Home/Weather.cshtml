@@ -4,8 +4,8 @@
 @{
     ViewData["Title"] = $"Погода в {Model.CurrentWeather.Name}";
 
-    var weatherTypeImg = @"http://openweathermap.org/img/wn/" + @Model.CurrentWeather.Weather.First().Icon + "@2x.png";
-   // var weatherTypeImg = @"/Icon/" + @Model.CurrentWeather.Weather.First().Icon + ".ico";
+    //var weatherTypeImg = @"http://openweathermap.org/img/wn/" + @Model.CurrentWeather.Weather.First().Icon + "@2x.png";
+   var weatherTypeImg = @"/Icon/" + @Model.CurrentWeather.Weather.First().Icon + ".ico";
         
 }
 
@@ -26,7 +26,7 @@
                                       
                                         <div style="font-size: 3.3rem;"><strong>@(Model.CurrentWeather.Main.Temp)°C</strong></div>
                                         <p style="padding-top: 25px;">Ощущается как @(Model.CurrentWeather.Main.FleelsLike)°C</p>
-                                        <p>Ветер: @(Model.CurrentWeather.Wind.Speed)КМ/Ч</p>
+                                        <p>Ветер: @(Model.CurrentWeather.Wind.Speed)м/с</p>
                                         <p>Влажность @(Model.CurrentWeather.Main.Humidity)% </p>
                                         
                                         
