@@ -17,6 +17,16 @@
 
 
 ![Image alt](https://github.com/YSeN1997/Diplom_Weather/blob/master/Images/DailyForecast.png)
+
+## Использование технологий в приложении.
+- ASP.NET;
+- MVC;
+- Razor Pages;
+- Bootstrap;
+- API;
+- JOSN.
+
+
 ## Трудности при разработке приложения 
 Получение API в формате JSON и десериализация.
 
