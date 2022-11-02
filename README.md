@@ -21,6 +21,7 @@
 ## Использование технологий в приложении.
 - ASP.NET;
 - MVC;
+- C#;
 - Razor Pages;
 - Bootstrap;
 - API;
